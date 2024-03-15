@@ -18,4 +18,11 @@ const addToLS = (bottle) => {
     setCartLS(cart);
 }
 
-export {getCartLS, setCartLS, addToLS }
+const removeFromLS = (id) => {
+    let cart = getCartLS();
+    cart = cart.filter(bottle => bottle.id !== id)
+    setCartLS(cart); 
+    
+}
+
+export {getCartLS, setCartLS, addToLS, removeFromLS }

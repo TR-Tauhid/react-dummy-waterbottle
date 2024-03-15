@@ -21,8 +21,8 @@ const Bottles = ({bottle, cartFunction}) => {
 
 };
 
-Bottles.PropTypes = {
-    bottle : {img, name, price, ratings, stock},
+Bottles.propTypes = {
+    bottle : PropTypes.object.isRequired,
     cartFunction : PropTypes.func.isRequired,
 }
 export {Bottles};

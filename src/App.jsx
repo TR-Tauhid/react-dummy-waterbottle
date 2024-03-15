@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { Bottles } from './Bottles'
 import { CartItem } from './utilities/cart/cart';
-import { addToLS, getCartLS } from './utilities/localStorage';
+import { addToLS, getCartLS, removeFromLS } from './utilities/localStorage';
 
 
 
@@ -32,6 +32,16 @@ function App() {
   };
 
 
+  // Function to remove bottle from stored cart 
+
+  const handleRemoveFromCart = (id) => {
+    // console.log("cart in handleremovefromcart", cart);
+    const newCart = cart.filter(bottle => bottle.id !== id);
+    setCart(newCart);
+    removeFromLS(id);
+  }
+
+
   // Only show cart data while there are items on cart
   useEffect(() => {
     if (bottles.length >= 0) {
@@ -45,7 +55,7 @@ function App() {
   return (
     <div>
       <h2 className='font-extrabold text-4xl'>Cart: </h2>
-      <CartItem storedCart={cart} ></CartItem>
+      <CartItem storedCart={cart} handleRemoveFromCart={handleRemoveFromCart}></CartItem>
       <h3> Available Water Bottles {bottles.length} </h3>
 
       <div>
